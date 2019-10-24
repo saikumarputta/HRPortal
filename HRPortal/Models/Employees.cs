@@ -7,6 +7,6 @@ namespace HRPortal.Models
 {
     public class Employees
     {
-       
+        public int MyProperty { get; set; }
     }
 }
