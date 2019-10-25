@@ -19,15 +19,6 @@ namespace HRPortal.Models
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<Employeeskills> Employeeskills { get; set; }
         public virtual DbSet<Experiencedetails> Experiencedetails { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseMySQL("server=localhost;port=3306;user=root;password=root;database=portaldb");
-            }
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Educationdetails>(entity =>
