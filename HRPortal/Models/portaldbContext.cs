@@ -1,10 +1,12 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace HRPortal.Models
 {
-    public partial class PortaldbContext : DbContext
+    public partial class PortaldbContext : IdentityDbContext<IdentityUser>
     {
         public PortaldbContext()
         {
@@ -21,6 +23,11 @@ namespace HRPortal.Models
         public virtual DbSet<Experiencedetails> Experiencedetails { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<IdentityRole>().HasData(
+                new {Id = "1",Name ="Admin",NoramlizedName = "ADMIN"  },
+                new {Id = "2",Name = "Employees",NormalizedName = "EMPLOYEE" }
+                );
             modelBuilder.Entity<Educationdetails>(entity =>
             {
                 entity.ToTable("educationdetails", "portaldb");
