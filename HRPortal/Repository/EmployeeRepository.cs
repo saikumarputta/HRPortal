@@ -8,14 +8,14 @@ namespace HRPortal.Repository
 {
     public class EmployeeRepository : IEmployee
     {
-        private readonly PortaldbContext _portaldbContext;
-        public EmployeeRepository(PortaldbContext portaldbContext)
+        private readonly portaldbContext _portaldbContext;
+        public EmployeeRepository(portaldbContext portaldbContext)
         {
             _portaldbContext = portaldbContext;
         }
         public bool AddEmployee(Employee employee)
         {
-            _portaldbContext.Employee.Add(employee);
+            _portaldbContext.employees.Add(employee);
             throw new NotImplementedException();
         }
 
@@ -31,7 +31,7 @@ namespace HRPortal.Repository
 
         public List<Employee> GetEmployees()
         {
-            return _portaldbContext.Employee.ToList();
+            return _portaldbContext.employees.ToList();
             throw new NotImplementedException();
         }
 
