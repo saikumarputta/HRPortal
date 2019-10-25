@@ -19,5 +19,7 @@ namespace HRPortal.Models
         public DbSet<Models.Employeeskills> employeeskills { get; set; }
         public DbSet<Models.Experiencedetails> experiencedetails { get; set; }
 
+
+
     }
 }
