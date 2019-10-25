@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HRPortal.Models
+namespace HRPortal.Repository
 {
-    public class Employees
+    public class EmployeeRepository
     {
     }
 }
