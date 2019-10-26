@@ -7,8 +7,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HRPortal.Migrations
 {
-    [DbContext(typeof(PortaldbContext))]
-    partial class PortaldbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(portaldbContext))]
+    partial class portaldbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -19,141 +19,96 @@ namespace HRPortal.Migrations
             modelBuilder.Entity("HRPortal.Models.Educationdetails", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int(11)");
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Comments")
-                        .HasMaxLength(45)
-                        .IsUnicode(false);
+                    b.Property<string>("Comments");
 
                     b.Property<string>("Education")
-                        .IsRequired()
-                        .HasMaxLength(45)
-                        .IsUnicode(false);
+                        .IsRequired();
 
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int(11)");
+                    b.Property<int>("EmployeeId");
 
                     b.Property<string>("InstituteUniversity")
-                        .IsRequired()
-                        .HasColumnName("Institute/University")
-                        .HasMaxLength(45)
-                        .IsUnicode(false);
+                        .IsRequired();
 
-                    b.Property<int>("YearOfPass")
-                        .HasColumnName("yearOfPass")
-                        .HasColumnType("int(11)");
+                    b.Property<int>("YearOfPass");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmployeeId")
-                        .HasName("fk_EducationDetails_idx");
+                    b.HasIndex("EmployeeId");
 
-                    b.ToTable("educationdetails","portaldb");
+                    b.ToTable("educationdetails");
                 });
 
             modelBuilder.Entity("HRPortal.Models.Employee", b =>
                 {
                     b.Property<int>("EmployeeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int(11)");
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Address")
-                        .HasMaxLength(45)
-                        .IsUnicode(false);
+                    b.Property<string>("Address");
 
                     b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(45)
-                        .IsUnicode(false);
+                        .IsRequired();
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(45)
-                        .IsUnicode(false);
+                        .IsRequired();
 
                     b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(45)
-                        .IsUnicode(false);
+                        .IsRequired();
 
-                    b.Property<string>("OfficePhoneNumber")
-                        .HasMaxLength(45)
-                        .IsUnicode(false);
+                    b.Property<string>("OfficePhoneNumber");
 
-                    b.Property<string>("PhoneNumber")
-                        .HasMaxLength(45)
-                        .IsUnicode(false);
+                    b.Property<string>("PhoneNumber");
 
-                    b.Property<string>("Photo")
-                        .HasMaxLength(45)
-                        .IsUnicode(false);
+                    b.Property<string>("Photo");
 
-                    b.Property<string>("WebUrl")
-                        .HasColumnName("WebURL")
-                        .HasMaxLength(45)
-                        .IsUnicode(false);
+                    b.Property<string>("WebUrl");
 
                     b.HasKey("EmployeeId");
 
-                    b.ToTable("employee","portaldb");
+                    b.ToTable("employees");
                 });
 
             modelBuilder.Entity("HRPortal.Models.Employeeskills", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int(11)");
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Comments")
-                        .HasMaxLength(45)
-                        .IsUnicode(false);
+                    b.Property<string>("Comments");
 
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int(11)");
+                    b.Property<int>("EmployeeId");
 
                     b.Property<string>("EmployeeSkill")
-                        .IsRequired()
-                        .HasMaxLength(45)
-                        .IsUnicode(false);
+                        .IsRequired();
 
-                    b.Property<int>("SkillRating")
-                        .HasColumnType("int(11)");
+                    b.Property<int>("SkillRating");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmployeeId")
-                        .HasName("fk_EmployeeSkills_idx");
+                    b.HasIndex("EmployeeId");
 
-                    b.ToTable("employeeskills","portaldb");
+                    b.ToTable("employeeskills");
                 });
 
             modelBuilder.Entity("HRPortal.Models.Experiencedetails", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int(11)");
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("CompanyName")
-                        .IsRequired()
-                        .HasMaxLength(45)
-                        .IsUnicode(false);
+                        .IsRequired();
 
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int(11)");
+                    b.Property<int>("EmployeeId");
 
-                    b.Property<DateTime?>("EndYear")
-                        .HasColumnType("date");
+                    b.Property<DateTime?>("EndYear");
 
-                    b.Property<DateTime>("StartYear")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("StartYear");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmployeeId")
-                        .HasName("fk_ExperienceDetails_idx");
+                    b.HasIndex("EmployeeId");
 
-                    b.ToTable("experiencedetails","portaldb");
+                    b.ToTable("experiencedetails");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -177,11 +132,6 @@ namespace HRPortal.Migrations
                         .HasName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles");
-
-                    b.HasData(
-                        new { Id = "1", Name = "Admin" },
-                        new { Id = "2", Name = "Employees", NormalizedName = "EMPLOYEE" }
-                    );
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -323,7 +273,6 @@ namespace HRPortal.Migrations
                     b.HasOne("HRPortal.Models.Employee", "Employee")
                         .WithMany("Educationdetails")
                         .HasForeignKey("EmployeeId")
-                        .HasConstraintName("fk_EducationDetails")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -332,7 +281,6 @@ namespace HRPortal.Migrations
                     b.HasOne("HRPortal.Models.Employee", "Employee")
                         .WithMany("Employeeskills")
                         .HasForeignKey("EmployeeId")
-                        .HasConstraintName("fk_EmployeeSkills")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -341,7 +289,6 @@ namespace HRPortal.Migrations
                     b.HasOne("HRPortal.Models.Employee", "Employee")
                         .WithMany("Experiencedetails")
                         .HasForeignKey("EmployeeId")
-                        .HasConstraintName("fk_ExperienceDetails")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

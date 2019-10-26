@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HRPortal.Migrations
 {
-    [DbContext(typeof(PortaldbContext))]
+   // [DbContext(typeof(PortaldbContext))]
     [Migration("20191025081318_saiadd")]
     partial class saiadd
     {
