@@ -3,14 +3,16 @@ using System;
 using HRPortal.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HRPortal.Migrations
 {
     [DbContext(typeof(PortaldbContext))]
-    partial class PortaldbContextModelSnapshot : ModelSnapshot
+    [Migration("20191025111649_Identity")]
+    partial class Identity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
