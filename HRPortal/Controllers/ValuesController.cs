@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HRPortal.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]

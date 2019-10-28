@@ -44,7 +44,8 @@ namespace HRPortal.Controllers
             }
             return Ok(new { Username = user.UserName });
         }
-
+         
+         [HttpPost("Login")]
         public async Task<IActionResult> LoginUser([FromBody]LoginViewModel model)
         {
             var user = await _userManager.FindByNameAsync(model.Username);
