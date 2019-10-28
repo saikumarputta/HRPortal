@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HRPortal.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,6 +14,11 @@ namespace HRPortal.Controllers
     [Authorize]
     public class ValuesController : ControllerBase
     {
+        private readonly portaldbContext _context;
+        public ValuesController(portaldbContext context)
+        {
+            _context = context;
+        }
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
