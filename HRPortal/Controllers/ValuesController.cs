@@ -1,23 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using HRPortal.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HRPortal.Controllers
 {
-    
+
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
     public class ValuesController : ControllerBase
     {
         private readonly portaldbContext _context;
-        public ValuesController(portaldbContext context)
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
+
+        public ValuesController(portaldbContext context, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> 
+            signInManager)
         {
             _context = context;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
         // GET api/values
         [HttpGet]
@@ -31,12 +35,6 @@ namespace HRPortal.Controllers
         public ActionResult<string> Get(int id)
         {
             return "value";
-        }
-
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
         }
 
         // PUT api/values/5
