@@ -13,8 +13,8 @@ namespace HRPortal.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        private readonly EmployeeRepository _employeeRepository;
-        public EmployeeController(EmployeeRepository employeeRepository)
+        private readonly IEmployee _employeeRepository;
+        public EmployeeController(IEmployee employeeRepository)
         {
             _employeeRepository = employeeRepository;
         }
@@ -23,14 +23,16 @@ namespace HRPortal.Controllers
         public IEnumerable<Employee> Get()
         {
             return _employeeRepository.GetEmployees();
+
             //return new string[] { "value1", "value2" };
         }
 
         // GET: api/Employee/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public Employee Get(int id)
         {
-            return "value";
+            return _employeeRepository.GetById(id);
+            // return "value";
         }
 
         // POST: api/Employee
@@ -42,14 +44,16 @@ namespace HRPortal.Controllers
 
         // PUT: api/Employee/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] Employee employee)
         {
+            _employeeRepository.UpdateEmployee(id, employee);
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            _employeeRepository.DeleteEmployee(id);
         }
     }
 }
