@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,9 +25,14 @@ namespace HRPortal.Models
         {
             base.OnModelCreating(builder);
 
+            builder.Entity<IdentityUser>().Property(x => x.LockoutEnabled).HasConversion(new BoolToZeroOneConverter<Int32>());
+            builder.Entity<IdentityUser>().Property(x => x.EmailConfirmed).HasConversion(new BoolToZeroOneConverter<Int32>());
+            builder.Entity<IdentityUser>().Property(x => x.PhoneNumberConfirmed).HasConversion(new BoolToZeroOneConverter<Int32>());
+            builder.Entity<IdentityUser>().Property(x => x.TwoFactorEnabled).HasConversion(new BoolToZeroOneConverter<Int32>());
+
             builder.Entity<IdentityRole>().HasData(
                 new { Id = "1", Name = "Admin", NormalizedName = "ADMIN" },
-                new { Id = "2", Name = "Customer", NormalizedName = "CUSTOMER" }
+                new { Id = "2", Name = "Employee", NormalizedName = "EMPLOYEE" }
                 );
         }
     }

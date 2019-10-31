@@ -41,7 +41,7 @@ namespace HRPortal.Controllers
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
-                await _userManager.AddToRoleAsync(user, "Customer");
+                await _userManager.AddToRoleAsync(user, "Employee");
                 await _signInManager.SignInAsync(user, false);
             }
             return Ok(new { UserName = user.UserName });
