@@ -1,139 +1,40 @@
-﻿using System;
+﻿using HRPortal.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace HRPortal.Models
 {
-    public partial class portaldbContext : IdentityDbContext
+    public class portaldbContext : IdentityDbContext<IdentityUser>
     {
-        public portaldbContext()
+        public portaldbContext(DbContextOptions<portaldbContext> options) : base(options)
         {
+
         }
+        public DbSet<Models.Employee> employees { get; set; }
+        public DbSet<Models.Educationdetails> educationdetails { get; set; }
+        public DbSet<Models.Employeeskills> employeeskills { get; set; }
+        public DbSet<Models.Experiencedetails> experiencedetails { get; set; }
 
-        public portaldbContext(DbContextOptions<portaldbContext> options)
-            : base(options)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-        }
+            base.OnModelCreating(builder);
 
-        public virtual DbSet<Educationdetails> Educationdetails { get; set; }
-        public virtual DbSet<Employee> Employee { get; set; }
-        public virtual DbSet<Employeeskills> Employeeskills { get; set; }
-        public virtual DbSet<Experiencedetails> Experiencedetails { get; set; }
+            builder.Entity<IdentityUser>().Property(x => x.LockoutEnabled).HasConversion(new BoolToZeroOneConverter<Int32>());
+            builder.Entity<IdentityUser>().Property(x => x.EmailConfirmed).HasConversion(new BoolToZeroOneConverter<Int32>());
+            builder.Entity<IdentityUser>().Property(x => x.PhoneNumberConfirmed).HasConversion(new BoolToZeroOneConverter<Int32>());
+            builder.Entity<IdentityUser>().Property(x => x.TwoFactorEnabled).HasConversion(new BoolToZeroOneConverter<Int32>());
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseMySQL("server=localhost;port=3306;user=root;password=root;database=portaldb");
-            }
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Educationdetails>(entity =>
-            {
-                entity.ToTable("educationdetails", "portaldb");
-
-                entity.HasIndex(e => e.EmployeeId);
-
-                entity.Property(e => e.Id).HasColumnType("int(11)");
-
-                entity.Property(e => e.Comments).IsUnicode(false);
-
-                entity.Property(e => e.Education)
-                    .IsRequired()
-                    .IsUnicode(false);
-
-                entity.Property(e => e.EmployeeId).HasColumnType("int(11)");
-
-                entity.Property(e => e.InstituteUniversity)
-                    .IsRequired()
-                    .IsUnicode(false);
-
-                entity.Property(e => e.YearOfPass).HasColumnType("int(11)");
-
-                entity.HasOne(d => d.Employee)
-                    .WithMany(p => p.Educationdetails)
-                    .HasForeignKey(d => d.EmployeeId)
-                    .HasConstraintName("FK_educationdetails_employees_EmployeeId");
-            });
-
-            modelBuilder.Entity<Employee>(entity =>
-            {
-                entity.ToTable("employee", "portaldb");
-
-                entity.Property(e => e.EmployeeId).HasColumnType("int(11)");
-
-                entity.Property(e => e.Address).IsUnicode(false);
-
-                entity.Property(e => e.Email)
-                    .IsRequired()
-                    .IsUnicode(false);
-
-                entity.Property(e => e.FirstName)
-                    .IsRequired()
-                    .IsUnicode(false);
-
-                entity.Property(e => e.LastName)
-                    .IsRequired()
-                    .IsUnicode(false);
-
-                entity.Property(e => e.OfficePhoneNumber).IsUnicode(false);
-
-                entity.Property(e => e.PhoneNumber).IsUnicode(false);
-
-                entity.Property(e => e.Photo).IsUnicode(false);
-
-                entity.Property(e => e.WebUrl).IsUnicode(false);
-            });
-
-            modelBuilder.Entity<Employeeskills>(entity =>
-            {
-                entity.ToTable("employeeskills", "portaldb");
-
-                entity.HasIndex(e => e.EmployeeId);
-
-                entity.Property(e => e.Id).HasColumnType("int(11)");
-
-                entity.Property(e => e.Comments).IsUnicode(false);
-
-                entity.Property(e => e.EmployeeId).HasColumnType("int(11)");
-
-                entity.Property(e => e.EmployeeSkill)
-                    .IsRequired()
-                    .IsUnicode(false);
-
-                entity.Property(e => e.SkillRating).HasColumnType("int(11)");
-
-                entity.HasOne(d => d.Employee)
-                    .WithMany(p => p.Employeeskills)
-                    .HasForeignKey(d => d.EmployeeId)
-                    .HasConstraintName("FK_employeeskills_employees_EmployeeId");
-            });
-
-            modelBuilder.Entity<Experiencedetails>(entity =>
-            {
-                entity.ToTable("experiencedetails", "portaldb");
-
-                entity.HasIndex(e => e.EmployeeId);
-
-                entity.Property(e => e.Id).HasColumnType("int(11)");
-
-                entity.Property(e => e.Comments).IsUnicode(false);
-
-                entity.Property(e => e.CompanyName)
-                    .IsRequired()
-                    .IsUnicode(false);
-
-                entity.Property(e => e.EmployeeId).HasColumnType("int(11)");
-
-                entity.HasOne(d => d.Employee)
-                    .WithMany(p => p.Experiencedetails)
-                    .HasForeignKey(d => d.EmployeeId)
-                    .HasConstraintName("FK_experiencedetails_employees_EmployeeId");
-            });
+            builder.Entity<IdentityRole>().HasData(
+                new { Id = "1", Name = "Admin", NormalizedName = "ADMIN" },
+                new { Id = "2", Name = "Employee", NormalizedName = "EMPLOYEE" }
+                );
         }
     }
+   
 }
