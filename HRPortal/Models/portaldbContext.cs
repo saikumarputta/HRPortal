@@ -1,10 +1,12 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace HRPortal.Models
 {
-    public partial class portaldbContext : DbContext
+    public partial class portaldbContext : IdentityDbContext
     {
         public portaldbContext()
         {

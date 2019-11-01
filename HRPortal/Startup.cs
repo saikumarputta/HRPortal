@@ -7,6 +7,7 @@ using HRPortal.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -31,6 +32,13 @@ namespace HRPortal
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<portaldbContext>(x => x.UseMySQL(Configuration.GetConnectionString("connection")));
+            services.AddIdentity<IdentityUser,IdentityRole>(
+                opt => {
+                    opt.Password.RequireNonAlphanumeric = false;
+                    opt.Password.RequireUppercase = false;
+                    opt.Password.RequireDigit = false;
+                }).AddEntityFrameworkStores<portaldbContext>().AddDefaultTokenProviders();
+
             services.AddMvc().AddJsonOptions(options =>
             {
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
