@@ -1,0 +1,5 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/HRPortal/obj/Debug/netcoreapp2.1/HRPortal.assets.cache
