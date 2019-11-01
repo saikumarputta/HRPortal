@@ -23,8 +23,6 @@ namespace HRPortal.Controllers
         public IEnumerable<Employee> Get()
         {
             return _employeeRepository.GetEmployees();
-
-            //return new string[] { "value1", "value2" };
         }
 
         // GET: api/Employee/5
