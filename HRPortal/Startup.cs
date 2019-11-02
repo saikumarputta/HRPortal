@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using HRPortal.Models;
+using HRPortal.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,6 +26,7 @@ namespace HRPortal
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<portaldbContext>(x => x.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddTransient<IEmployee, EmployeeRepository>();
 
             services.AddIdentity<IdentityUser, IdentityRole>(options => {
                 options.Password.RequireDigit = false;
