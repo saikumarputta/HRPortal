@@ -3,3 +3,5 @@
 ################################################################################
 
 /HRPortal/obj/Debug/netcoreapp2.1/HRPortal.assets.cache
+/.vs/HRPortal/v16/Server/sqlite3
+/.vs/HRPortal/v16/.suo
