@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Saikumar Putta\\source\\repos\\HRPortal\\HRPortal\\HRPortal.csproj": {}
+    "C:\\Users\\skputta\\source\\repos\\HRPortal\\HRPortal\\HRPortal.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Saikumar Putta\\source\\repos\\HRPortal\\HRPortal\\HRPortal.csproj": {
+    "C:\\Users\\skputta\\source\\repos\\HRPortal\\HRPortal\\HRPortal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Saikumar Putta\\source\\repos\\HRPortal\\HRPortal\\HRPortal.csproj",
+        "projectUniqueName": "C:\\Users\\skputta\\source\\repos\\HRPortal\\HRPortal\\HRPortal.csproj",
         "projectName": "HRPortal",
-        "projectPath": "C:\\Users\\Saikumar Putta\\source\\repos\\HRPortal\\HRPortal\\HRPortal.csproj",
-        "packagesPath": "C:\\Users\\Saikumar Putta\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Saikumar Putta\\source\\repos\\HRPortal\\HRPortal\\obj\\",
+        "projectPath": "C:\\Users\\skputta\\source\\repos\\HRPortal\\HRPortal\\HRPortal.csproj",
+        "packagesPath": "C:\\Users\\skputta\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\skputta\\source\\repos\\HRPortal\\HRPortal\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Saikumar Putta\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\skputta\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

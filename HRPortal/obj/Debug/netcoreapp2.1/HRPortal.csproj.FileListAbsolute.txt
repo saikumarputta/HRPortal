@@ -14,3 +14,18 @@ c:\Users\Saikumar Putta\source\repos\HRPortal\HRPortal\obj\Debug\netcoreapp2.1\H
 c:\Users\Saikumar Putta\source\repos\HRPortal\HRPortal\obj\Debug\netcoreapp2.1\HRPortal.RazorTargetAssemblyInfo.cache
 c:\Users\Saikumar Putta\source\repos\HRPortal\HRPortal\obj\Debug\netcoreapp2.1\HRPortal.dll
 c:\Users\Saikumar Putta\source\repos\HRPortal\HRPortal\obj\Debug\netcoreapp2.1\HRPortal.pdb
+C:\Users\skputta\source\repos\HRPortal\HRPortal\bin\Debug\netcoreapp2.1\appsettings.Development.json
+C:\Users\skputta\source\repos\HRPortal\HRPortal\bin\Debug\netcoreapp2.1\appsettings.json
+C:\Users\skputta\source\repos\HRPortal\HRPortal\bin\Debug\netcoreapp2.1\Properties\launchSettings.json
+C:\Users\skputta\source\repos\HRPortal\HRPortal\bin\Debug\netcoreapp2.1\HRPortal.deps.json
+C:\Users\skputta\source\repos\HRPortal\HRPortal\bin\Debug\netcoreapp2.1\HRPortal.runtimeconfig.json
+C:\Users\skputta\source\repos\HRPortal\HRPortal\bin\Debug\netcoreapp2.1\HRPortal.runtimeconfig.dev.json
+C:\Users\skputta\source\repos\HRPortal\HRPortal\bin\Debug\netcoreapp2.1\HRPortal.dll
+C:\Users\skputta\source\repos\HRPortal\HRPortal\obj\Debug\netcoreapp2.1\HRPortal.csprojAssemblyReference.cache
+C:\Users\skputta\source\repos\HRPortal\HRPortal\obj\Debug\netcoreapp2.1\HRPortal.RazorAssemblyInfo.cache
+C:\Users\skputta\source\repos\HRPortal\HRPortal\obj\Debug\netcoreapp2.1\HRPortal.RazorAssemblyInfo.cs
+C:\Users\skputta\source\repos\HRPortal\HRPortal\obj\Debug\netcoreapp2.1\HRPortal.AssemblyInfoInputs.cache
+C:\Users\skputta\source\repos\HRPortal\HRPortal\obj\Debug\netcoreapp2.1\HRPortal.AssemblyInfo.cs
+C:\Users\skputta\source\repos\HRPortal\HRPortal\obj\Debug\netcoreapp2.1\HRPortal.RazorTargetAssemblyInfo.cache
+C:\Users\skputta\source\repos\HRPortal\HRPortal\obj\Debug\netcoreapp2.1\HRPortal.dll
+C:\Users\skputta\source\repos\HRPortal\HRPortal\obj\Debug\netcoreapp2.1\HRPortal.pdb
