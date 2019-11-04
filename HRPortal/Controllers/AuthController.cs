@@ -32,6 +32,7 @@ namespace HRPortal.Controllers
         [HttpPost]
         public async Task<IActionResult> RegisterUser([FromBody]RegisterViewModel model)
         {
+            model.role = "Employee";
             var user = new IdentityUser
             {
                 UserName = model.Email,
@@ -39,6 +40,7 @@ namespace HRPortal.Controllers
                 SecurityStamp = Guid.NewGuid().ToString()
             };
             var result = await _userManager.CreateAsync(user, model.Password);
+            await _userManager.AddToRoleAsync(user,model.role);
             if (result.Succeeded)
             {
                 await _userManager.AddToRoleAsync(user, "Employee");
