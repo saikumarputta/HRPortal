@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace HRPortal.Models
 {
-    public class portaldbContext : IdentityDbContext<IdentityUser>
+    public class portaldbContext : IdentityDbContext<IdentityUser,IdentityRole,string>
     {
         public portaldbContext(DbContextOptions<portaldbContext> options) : base(options)
         {
