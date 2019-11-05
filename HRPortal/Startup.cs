@@ -25,13 +25,17 @@ namespace HRPortal
         {
             services.AddDbContext<portaldbContext>(x => x.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddAuthorization(options => {
+                options.AddPolicy("RequireAminstratorRole", policy => policy.RequireRole("Adminstrators"));
+            });
+
             services.AddIdentity<IdentityUser, IdentityRole>(options => {
                 options.Password.RequireDigit = false;
                 options.Password.RequireLowercase = false;
                 options.Password.RequiredLength = 6;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
-            }).AddEntityFrameworkStores<portaldbContext>().AddDefaultTokenProviders();
+            }).AddRoles<IdentityRole>().AddEntityFrameworkStores<portaldbContext>().AddDefaultTokenProviders();
 
             services.AddAuthentication(options => {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

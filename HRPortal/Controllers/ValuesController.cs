@@ -9,7 +9,7 @@ namespace HRPortal.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    [Authorize(Policy = "RequireAminstratorRole")]
     public class ValuesController : ControllerBase
     {
         private readonly portaldbContext _context;
@@ -25,6 +25,7 @@ namespace HRPortal.Controllers
         }
         // GET api/values
         [HttpGet]
+        [Authorize]
         public ActionResult<IEnumerable<string>> Get()
         {
             return new string[] { "value1", "value2" };

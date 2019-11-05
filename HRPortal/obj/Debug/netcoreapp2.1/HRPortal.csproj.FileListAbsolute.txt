@@ -29,3 +29,4 @@ C:\Users\skputta\source\repos\HRPortal\HRPortal\obj\Debug\netcoreapp2.1\HRPortal
 C:\Users\skputta\source\repos\HRPortal\HRPortal\obj\Debug\netcoreapp2.1\HRPortal.RazorTargetAssemblyInfo.cache
 C:\Users\skputta\source\repos\HRPortal\HRPortal\obj\Debug\netcoreapp2.1\HRPortal.dll
 C:\Users\skputta\source\repos\HRPortal\HRPortal\obj\Debug\netcoreapp2.1\HRPortal.pdb
+C:\Users\skputta\source\repos\HRPortal\HRPortal\bin\Debug\netcoreapp2.1\HRPortal.pdb

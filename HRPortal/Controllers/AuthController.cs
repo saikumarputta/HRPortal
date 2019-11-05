@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,20 +20,24 @@ namespace HRPortal.Controllers
     {
         private readonly portaldbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private IConfiguration _configuration;
 
         public AuthController(portaldbContext context, UserManager<IdentityUser> userManager, SignInManager<IdentityUser>
-            signInManager, IConfiguration configuration)
+            signInManager, IConfiguration configuration,RoleManager<IdentityRole> roleManager)
+
         {
             _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
             _configuration = configuration;
+            _roleManager = roleManager;
         }
         [HttpPost]
         public async Task<IActionResult> RegisterUser([FromBody]RegisterViewModel model)
         {
+            model.Role = "Employee";
             var user = new IdentityUser
             {
                 UserName = model.Email,
@@ -41,7 +47,7 @@ namespace HRPortal.Controllers
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
-                await _userManager.AddToRoleAsync(user, "Employee");
+                 await _userManager.AddToRoleAsync(user, "Adminstrators");
                 await _signInManager.SignInAsync(user, false);
             }
             return Ok(new { UserName = user.UserName });
@@ -53,8 +59,10 @@ namespace HRPortal.Controllers
             var user = await _userManager.FindByNameAsync(model.Username);
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
-                var claim = new[] { new Claim(JwtRegisteredClaimNames.Sub, user.UserName) };
-
+                var claim = new[] { new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                    new Claim(JwtRegisteredClaimNames.Email,user.Email)
+                };
                 var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:SigningKey"]));
                 var signinCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256);
                 int expiryInMinutes = Convert.ToInt32(_configuration["JWT:ExpiryInMinutes"]);
@@ -64,11 +72,16 @@ namespace HRPortal.Controllers
                     expires: DateTime.UtcNow.AddMinutes(expiryInMinutes),
                     signingCredentials: signinCredentials
                     );
+
+                await _userManager.RemoveAuthenticationTokenAsync(user, "MyApp", "RefreshToken");
+              var newRefreshToken =  new JwtSecurityTokenHandler().WriteToken(token);
+               await _userManager.SetAuthenticationTokenAsync(user, "MyApp", "RefreshToken", newRefreshToken);
                 return Ok(new
                 {
                     token = new JwtSecurityTokenHandler().WriteToken(token),
-                    expiration = token.ValidTo
+                    expiration = token.ValidTo,
                 });
+                
             }
             return Unauthorized();
         }
