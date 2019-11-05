@@ -45,9 +45,9 @@ namespace HRPortal.Controllers
                 SecurityStamp = Guid.NewGuid().ToString()
             };
             var result = await _userManager.CreateAsync(user, model.Password);
+            await _userManager.AddToRoleAsync(user, model.Role );
             if (result.Succeeded)
             {
-                 await _userManager.AddToRoleAsync(user, "Adminstrators");
                 await _signInManager.SignInAsync(user, false);
             }
             return Ok(new { UserName = user.UserName });
