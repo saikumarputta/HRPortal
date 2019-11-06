@@ -45,6 +45,7 @@ namespace HRPortal.Controllers
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             await _userManager.AddToRoleAsync(user, "Employee");
+            await _userManager.AddClaimAsync(user, new Claim("MyClaimType", "MyClaimValue"));
             if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(user, false);
@@ -58,13 +59,30 @@ namespace HRPortal.Controllers
             var user = await _userManager.FindByNameAsync(model.Username);
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
+                IdentityOptions _options = new IdentityOptions();
                 var claims = new List<Claim>{ new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new Claim(JwtRegisteredClaimNames.Email,user.Email),
+                    new Claim(_options.ClaimsIdentity.UserIdClaimType,user.Id),
+                    new Claim(_options.ClaimsIdentity.UserNameClaimType,user.UserName),
             };
-                //Get user roles and add them to claims
+                var userClaims = await _userManager.GetClaimsAsync(user);
                 var roles = await _userManager.GetRolesAsync(user);
                 AddRolestoClaims(claims, roles);
+                claims.AddRange(userClaims);
+                foreach (var userrole in roles)
+                {
+                    claims.Add(new Claim(ClaimTypes.Role, userrole));
+                    var role = await _roleManager.FindByNameAsync(userrole);
+                    if (role != null)
+                    {
+                        var roleClaims = await _roleManager.GetClaimsAsync(role);
+                        foreach (Claim roleClaim in roleClaims)
+                        {
+                            claims.Add(roleClaim);
+                        }
+                    }
+                }
 
             var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:SigningKey"]));
             var signinCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256);
