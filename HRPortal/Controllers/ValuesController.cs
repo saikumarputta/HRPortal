@@ -25,6 +25,7 @@ namespace HRPortal.Controllers
         }
         // GET api/values
         [HttpGet]
+       // [Authorize(Roles ="Admin")]
         public ActionResult<IEnumerable<string>> Get()
         {
             return new string[] { "value1", "value2" };
