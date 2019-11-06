@@ -63,27 +63,10 @@ namespace HRPortal.Controllers
                 var claims = new List<Claim>{ new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new Claim(JwtRegisteredClaimNames.Email,user.Email),
-                    new Claim(_options.ClaimsIdentity.UserIdClaimType,user.Id),
-                    new Claim(_options.ClaimsIdentity.UserNameClaimType,user.UserName),
-            };
-                var userClaims = await _userManager.GetClaimsAsync(user);
+                    
+            };             
                 var roles = await _userManager.GetRolesAsync(user);
-                AddRolestoClaims(claims, roles);
-                claims.AddRange(userClaims);
-                foreach (var userrole in roles)
-                {
-                    claims.Add(new Claim(ClaimTypes.Role, userrole));
-                    var role = await _roleManager.FindByNameAsync(userrole);
-                    if (role != null)
-                    {
-                        var roleClaims = await _roleManager.GetClaimsAsync(role);
-                        foreach (Claim roleClaim in roleClaims)
-                        {
-                            claims.Add(roleClaim);
-                        }
-                    }
-                }
-
+                AddRolestoClaims(claims, roles);            
             var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:SigningKey"]));
             var signinCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256);
             int expiryInMinutes = Convert.ToInt32(_configuration["JWT:ExpiryInMinutes"]);
