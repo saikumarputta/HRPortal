@@ -41,7 +41,7 @@ namespace HRPortal.Controllers
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
-                await _userManager.AddToRoleAsync(user, "Employee");
+                await _userManager.AddToRoleAsync(user, "Admin");
                 await _signInManager.SignInAsync(user, false);
             }
             return Ok(new { UserName = user.UserName });
@@ -64,6 +64,9 @@ namespace HRPortal.Controllers
                     expires: DateTime.UtcNow.AddMinutes(expiryInMinutes),
                     signingCredentials: signinCredentials
                     );
+                await _userManager.RemoveAuthenticationTokenAsync(user, "Myapp", "RefreshToken");
+                var tokenRefresh = new JwtSecurityTokenHandler().WriteToken(token);
+                await _userManager.SetAuthenticationTokenAsync(user, "MyApp", "RefreshToken", tokenRefresh);
                 return Ok(new
                 {
                     token = new JwtSecurityTokenHandler().WriteToken(token),

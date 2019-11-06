@@ -56,8 +56,12 @@ namespace HRPortal
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:SigningKey"]))
                 };
             });
+            //services.AddAuthorization(options =>
+            //{
+            //    options.AddPolicy("New Policy", policy => policy.RequireClaim("EmployeeId"));
+            //});
             //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

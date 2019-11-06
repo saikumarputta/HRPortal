@@ -4,21 +4,30 @@ using System.Linq;
 using System.Threading.Tasks;
 using HRPortal.Models;
 using HRPortal.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HRPortal.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class EmployeeController : ControllerBase
     {
         private readonly IEmployee _employeeRepository;
-        public EmployeeController(IEmployee employeeRepository)
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
+
+        public EmployeeController(IEmployee employeeRepository, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
             _employeeRepository = employeeRepository;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
         // GET: api/Employee
+       // [Authorize(Roles ="Admin")]
         [HttpGet]
         public IEnumerable<Employee> Get()
         {
@@ -26,6 +35,7 @@ namespace HRPortal.Controllers
         }
 
         // GET: api/Employee/5
+        
         [HttpGet("{id}", Name = "Get")]
         public Employee Get(int id)
         {
