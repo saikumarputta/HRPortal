@@ -30,3 +30,6 @@ C:\Users\skputta\source\repos\HRPortal\HRPortal\obj\Debug\netcoreapp2.1\HRPortal
 C:\Users\skputta\source\repos\HRPortal\HRPortal\obj\Debug\netcoreapp2.1\HRPortal.dll
 C:\Users\skputta\source\repos\HRPortal\HRPortal\obj\Debug\netcoreapp2.1\HRPortal.pdb
 C:\Users\skputta\source\repos\HRPortal\HRPortal\bin\Debug\netcoreapp2.1\HRPortal.pdb
+C:\Users\skputta\source\repos\HRPortal\HRPortal\bin\Debug\netcoreapp2.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\Users\skputta\source\repos\HRPortal\HRPortal\bin\Debug\netcoreapp2.1\xunit.runner.reporters.netcoreapp10.dll
+C:\Users\skputta\source\repos\HRPortal\HRPortal\bin\Debug\netcoreapp2.1\xunit.runner.utility.netcoreapp10.dll
