@@ -20,18 +20,24 @@ namespace HRPortal.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
 
-        public EmployeeController(IEmployee employeeRepository, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public EmployeeController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
-            _employeeRepository = employeeRepository;
             _userManager = userManager;
             _signInManager = signInManager;
         }
-        // GET: api/Employee
-       // [Authorize(Roles ="Admin")]
-        [HttpGet]
-        public IEnumerable<Employee> Get()
+
+        public EmployeeController(IEmployee employeeRepository)
         {
-            return _employeeRepository.GetEmployees();
+            _employeeRepository = employeeRepository;
+        }
+
+        // GET: api/Employee
+        // [Authorize(Roles ="Admin")]
+        [HttpGet]
+        public ActionResult<IEnumerable<Employee>> Get()
+        {
+            var items = _employeeRepository.GetEmployees();
+            return Ok(items);
         }
 
         // GET: api/Employee/5
