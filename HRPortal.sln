@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29318.209
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRPortal", "HRPortal\HRPortal.csproj", "{7DC02449-291B-4366-BAC9-C9CEFAD13A16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTestHRPortal", "XUnitTestHRPortal\XUnitTestHRPortal.csproj", "{8D2023F5-2ADA-49D9-91F8-49F8C36AE299}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTestHRPortal", "XUnitTestHRPortal\XUnitTestHRPortal.csproj", "{8D2023F5-2ADA-49D9-91F8-49F8C36AE299}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
