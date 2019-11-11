@@ -29,7 +29,6 @@ namespace HRPortal.Models
             builder.Entity<IdentityUser>().Property(x => x.EmailConfirmed).HasConversion(new BoolToZeroOneConverter<Int32>());
             builder.Entity<IdentityUser>().Property(x => x.PhoneNumberConfirmed).HasConversion(new BoolToZeroOneConverter<Int32>());
             builder.Entity<IdentityUser>().Property(x => x.TwoFactorEnabled).HasConversion(new BoolToZeroOneConverter<Int32>());
-<<<<<<< HEAD
                  
                  //aspnetuserlogins
             builder.Entity<IdentityUserLogin<string>>().Property(x => x.LoginProvider).HasMaxLength(128);
@@ -47,7 +46,6 @@ namespace HRPortal.Models
 
 
 
-=======
             
             builder.Entity<IdentityUserLogin<string>>().Property(x => x.LoginProvider).HasMaxLength(128);
             builder.Entity<IdentityUserLogin<string>>().Property(x => x.ProviderKey).HasMaxLength(128);
@@ -59,7 +57,6 @@ namespace HRPortal.Models
             builder.Entity<IdentityUserToken<string>>().Property(x => x.UserId).HasMaxLength(128);
             builder.Entity<IdentityUserToken<string>>().Property(x => x.LoginProvider).HasMaxLength(128);
             builder.Entity<IdentityUserToken<string>>().Property(x => x.Name).HasMaxLength(128);
->>>>>>> d040df2a07e5ba7386c650da2433c0b874d0bcc4
 
             builder.Entity<IdentityRole>().HasData(
                 new { Id = "1", Name = "Admin", NormalizedName = "ADMIN" },
