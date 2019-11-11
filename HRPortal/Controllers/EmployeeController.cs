@@ -1,26 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HRPortal.Models;
+﻿using HRPortal.Models;
 using HRPortal.Repository;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace HRPortal.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize(Roles = "Admin,Employee")]
     public class EmployeeController : ControllerBase
     {
         private readonly IEmployee _employeeRepository;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
 
-        public EmployeeController(IEmployee employeeRepository,UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public EmployeeController(IEmployee employeeRepository, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -28,7 +24,7 @@ namespace HRPortal.Controllers
         }
 
         // GET: api/Employee
-        // [Authorize(Roles ="Admin")]
+        [Authorize(Roles = "Employee")]
         [HttpGet]
         public ActionResult<IEnumerable<Employee>> Get()
         {
@@ -36,7 +32,7 @@ namespace HRPortal.Controllers
         }
 
         // GET: api/Employee/5
-        
+
         [HttpGet("{id}", Name = "Get")]
         public Employee Get(int id)
         {

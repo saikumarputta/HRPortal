@@ -57,7 +57,7 @@ namespace HRPortal.Repository
                        .Include(emp => emp.Employeeskills)
                        .Include(emp => emp.Experiencedetails)
                        .Where(emp => emp.EmployeeId == id)
-                       .FirstOrDefault<Employee>();           
+                       .FirstOrDefault<Employee>();
             u.Address = employee.Address;
             u.Email = employee.Email;
             u.FirstName = employee.FirstName;
@@ -72,8 +72,8 @@ namespace HRPortal.Repository
             u.Experiencedetails = employee.Experiencedetails;
             _portaldbContext.employees.Update(u);
             _portaldbContext.SaveChanges();
-             return true;
-            
+            return true;
+
         }
     }
 }

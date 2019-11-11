@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using HRPortal.Models;
+﻿using HRPortal.Models;
 using HRPortal.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace HRPortal.Controllers
 {
@@ -25,7 +24,7 @@ namespace HRPortal.Controllers
         private IConfiguration _configuration;
 
         public AuthController(portaldbContext context, UserManager<IdentityUser> userManager, SignInManager<IdentityUser>
-            signInManager, IConfiguration configuration,RoleManager<IdentityRole> roleManager)
+            signInManager, IConfiguration configuration, RoleManager<IdentityRole> roleManager)
 
         {
             _context = context;
@@ -45,12 +44,16 @@ namespace HRPortal.Controllers
                 SecurityStamp = Guid.NewGuid().ToString()
             };
             var result = await _userManager.CreateAsync(user, model.Password);
-            await _userManager.AddToRoleAsync(user,model.role);
+            await _userManager.AddToRoleAsync(user, model.role);
             await _userManager.AddToRoleAsync(user, "Employee");
             await _userManager.AddClaimAsync(user, new Claim("MyClaimType", "MyClaimValue"));
             if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(user, false);
+            }
+            else
+            {
+                return NotFound(new { message = "you cannot register now!" });
             }
             return Ok(new { UserName = user.UserName });
         }
@@ -65,30 +68,30 @@ namespace HRPortal.Controllers
                 var claims = new List<Claim>{ new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new Claim(JwtRegisteredClaimNames.Email,user.Email),
-                    
-            };             
-                var roles = await _userManager.GetRolesAsync(user);
-                AddRolestoClaims(claims, roles);            
-            var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:SigningKey"]));
-            var signinCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256);
-            int expiryInMinutes = Convert.ToInt32(_configuration["JWT:ExpiryInMinutes"]);
-            var token = new JwtSecurityToken(
-                issuer: _configuration["JWT:Site"],
-                audience: _configuration["JWT:Site"],
-                expires: DateTime.UtcNow.AddMinutes(expiryInMinutes),
-                claims:claims,
-                signingCredentials: signinCredentials
-                );
 
-            await _userManager.RemoveAuthenticationTokenAsync(user, "MyApp", "RefreshToken");
-            var newRefreshToken = new JwtSecurityTokenHandler().WriteToken(token);
-            await _userManager.SetAuthenticationTokenAsync(user, "MyApp", "RefreshToken", newRefreshToken);
-            return Ok(new
-            {
-                token = new JwtSecurityTokenHandler().WriteToken(token),
-                expiration = token.ValidTo,
-            });
-        
+            };
+                var roles = await _userManager.GetRolesAsync(user);
+                AddRolestoClaims(claims, roles);
+                var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:SigningKey"]));
+                var signinCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256);
+                int expiryInMinutes = Convert.ToInt32(_configuration["JWT:ExpiryInMinutes"]);
+                var token = new JwtSecurityToken(
+                    issuer: _configuration["JWT:Site"],
+                    audience: _configuration["JWT:Site"],
+                    expires: DateTime.UtcNow.AddMinutes(expiryInMinutes),
+                    claims: claims,
+                    signingCredentials: signinCredentials
+                    );
+
+                await _userManager.RemoveAuthenticationTokenAsync(user, "MyApp", "RefreshToken");
+                var newRefreshToken = new JwtSecurityTokenHandler().WriteToken(token);
+                await _userManager.SetAuthenticationTokenAsync(user, "MyApp", "RefreshToken", newRefreshToken);
+                return Ok(new
+                {
+                    token = new JwtSecurityTokenHandler().WriteToken(token),
+                    expiration = token.ValidTo,
+                });
+
             }
             return Unauthorized();
         }

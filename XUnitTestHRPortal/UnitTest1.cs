@@ -1,24 +1,20 @@
-using HRPortal.Models;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace XUnitTestHRPortal{
+namespace XUnitTestHRPortal
+{
     public class UnitTest1 : TestScenarioBase
     {
         [Fact]
         public async Task Get()
         {
-        using (var server = CreateServer())
+            using (var server = CreateServer())
             {
                 var response = await server.CreateClient().GetAsync($"api/employee");
-                Assert.Equal(1,1);
+                Assert.Equal(1, 1);
             }
         }
-       
+
         [Fact]
         public async Task Get_Id()
         {
@@ -34,19 +30,21 @@ namespace XUnitTestHRPortal{
             //Arrange
             using (var server = CreateServer())
             {
-                var request = new { 
-                Url = "api/employee",
-                Body = new { 
-                EmployeeId = 2,
-                FirstName = "ram",
-                LastName = "king",
-                Email = "ramking@gmail.com",
-                PhoneNumber = "7036355827",
-                Address = "Hyderabad",
-                OfficePhoneNumber = "7036355827",
-                Photo = "",
-                WebUrl = ""
-                }
+                var request = new
+                {
+                    Url = "api/employee",
+                    Body = new
+                    {
+                        EmployeeId = 2,
+                        FirstName = "ram",
+                        LastName = "king",
+                        Email = "ramking@gmail.com",
+                        PhoneNumber = "7036355827",
+                        Address = "Hyderabad",
+                        OfficePhoneNumber = "7036355827",
+                        Photo = "",
+                        WebUrl = ""
+                    }
                 };
 
                 //Act
@@ -87,7 +85,7 @@ namespace XUnitTestHRPortal{
                 //Asset
                 response.EnsureSuccessStatusCode();
             }
-           
+
         }
 
         [Fact]
@@ -96,19 +94,21 @@ namespace XUnitTestHRPortal{
             using (var server = CreateServer())
             {
                 //Arrange
-                var request = new { 
-                Url = "api/employee/2",
-                Body = new {
-                    EmployeeId = 2,
-                    FirstName = "ram",
-                    LastName = "king",
-                    Email = "ramking@gmail.com",
-                    PhoneNumber = "7036355827",
-                    Address = "Khammam",
-                    OfficePhoneNumber = "8500856743",
-                    Photo = "",
-                    WebUrl = ""
-                }
+                var request = new
+                {
+                    Url = "api/employee/2",
+                    Body = new
+                    {
+                        EmployeeId = 2,
+                        FirstName = "ram",
+                        LastName = "king",
+                        Email = "ramking@gmail.com",
+                        PhoneNumber = "7036355827",
+                        Address = "Khammam",
+                        OfficePhoneNumber = "8500856743",
+                        Photo = "",
+                        WebUrl = ""
+                    }
                 };
                 var deleteResponse = await server.CreateClient().DeleteAsync(request.Url);
 
@@ -116,6 +116,6 @@ namespace XUnitTestHRPortal{
                 deleteResponse.EnsureSuccessStatusCode();
             }
         }
-        
+
     }
 }

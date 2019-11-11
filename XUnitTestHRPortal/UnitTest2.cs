@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Xunit;
 
 namespace XUnitTestHRPortal
@@ -18,13 +14,14 @@ namespace XUnitTestHRPortal
                 var request = new
                 {
                     Url = "api/auth",
-                    Body = new {
-                    Email = "ramking@gmail.com",
-                    Password = "saikumar"
+                    Body = new
+                    {
+                        Email = "ramking@gmail.com",
+                        Password = "saikumar"
                     }
                 };
-                var response = await server.CreateClient().PostAsync(request.Url,ContentHelper.GetStringContent(request.Body));
-
+                //Act
+                var response = await server.CreateClient().PostAsync(request.Url, ContentHelper.GetStringContent(request.Body));
                 //Assert
                 response.EnsureSuccessStatusCode();
                 //var responseString = await response.Content.ReadAsStringAsync();
@@ -36,16 +33,19 @@ namespace XUnitTestHRPortal
         {
             using (var server = CreateServer())
             {
-                var request = new { 
-                Url = "api/auth/login",
-                Body = new { 
-                Username = "ramking@gmail.com",
-                Password = "saikumar"
-                }
+                //Arrange
+                var request = new
+                {
+                    Url = "api/auth/login",
+                    Body = new
+                    {
+                        Username = "ramking@gmail.com",
+                        Password = "saikumar"
+                    }
                 };
-
-                var response = await server.CreateClient().PostAsync(request.Url,ContentHelper.GetStringContent(request.Body));
-
+                //Act
+                var response = await server.CreateClient().PostAsync(request.Url, ContentHelper.GetStringContent(request.Body));
+                //Assert
                 response.EnsureSuccessStatusCode();
             }
         }
