@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Xunit;
 
 namespace XUnitTestHRPortal{
-    public class UnitTest1 : TestSenarioBase
+    public class UnitTest1 : TestScenarioBase
     {
         [Fact]
         public async Task Get()

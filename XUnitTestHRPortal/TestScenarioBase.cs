@@ -1,15 +1,21 @@
+﻿using System.Net.Http;
+using HRPortal;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.TestHost;
+
 namespace XUnitTestHRPortal
 {
-public class TestScenarioBase
-{
-    private readonly HttpClient _client{get; private set;}
-public TestServer CreateServer()
-{
-var webHostBuilder = WebHost.CreateDefaultBuilderd();
-webHostBuilder.UseStartup<Startup>();
-var server = new TestServer(webHostBuilder);
-
-return server;
-}
-}
+    public class TestScenarioBase
+    {
+        public HttpClient Client { get; private set; }
+      
+        public TestServer CreateServer()
+        {
+          var webHostBuilder = WebHost.CreateDefaultBuilder();
+          webHostBuilder.UseStartup<Startup>();
+          var testServer = new TestServer(webHostBuilder);
+          return testServer;
+        }
+    }
 }

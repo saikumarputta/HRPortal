@@ -38,12 +38,7 @@ namespace HRPortal
                 options.Password.RequiredLength = 6;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
-<<<<<<< HEAD
             }).AddRoles<IdentityRole>().AddEntityFrameworkStores<portaldbContext>().AddDefaultTokenProviders();
-=======
-            }).AddRoleManager<RoleManager<IdentityRole>>().AddEntityFrameworkStores<portaldbContext>().AddDefaultTokenProviders();
->>>>>>> d040df2a07e5ba7386c650da2433c0b874d0bcc4
-
             services.AddAuthentication(options => {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
