@@ -8,7 +8,7 @@ namespace HRPortal.Repository
     public class EmployeeRepository : IEmployee
     {
         private readonly portaldbContext _portaldbContext;
-        public EmployeeRepository(portaldbContext portaldbContext,IEmployee service)
+        public EmployeeRepository(portaldbContext portaldbContext)
         {
             _portaldbContext = portaldbContext;
         }

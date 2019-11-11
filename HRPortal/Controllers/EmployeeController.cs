@@ -13,21 +13,17 @@ namespace HRPortal.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class EmployeeController : ControllerBase
     {
         private readonly IEmployee _employeeRepository;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
 
-        public EmployeeController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public EmployeeController(IEmployee employeeRepository,UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-        }
-
-        public EmployeeController(IEmployee employeeRepository)
-        {
             _employeeRepository = employeeRepository;
         }
 
@@ -36,8 +32,7 @@ namespace HRPortal.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Employee>> Get()
         {
-            var items = _employeeRepository.GetEmployees();
-            return Ok(items);
+            return _employeeRepository.GetEmployees();
         }
 
         // GET: api/Employee/5
