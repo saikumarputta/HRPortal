@@ -37,6 +37,7 @@ namespace HRPortal.Controllers
         [HttpPost]
         public async Task<IActionResult> RegisterUser([FromBody]RegisterViewModel model)
         {
+            model.role = "Employee";
             var user = new IdentityUser
             {
                 UserName = model.Email,
@@ -44,8 +45,12 @@ namespace HRPortal.Controllers
                 SecurityStamp = Guid.NewGuid().ToString()
             };
             var result = await _userManager.CreateAsync(user, model.Password);
+<<<<<<< HEAD
+            await _userManager.AddToRoleAsync(user,model.role);
+=======
             await _userManager.AddToRoleAsync(user, "Employee");
             await _userManager.AddClaimAsync(user, new Claim("MyClaimType", "MyClaimValue"));
+>>>>>>> d040df2a07e5ba7386c650da2433c0b874d0bcc4
             if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(user, false);
