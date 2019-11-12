@@ -45,7 +45,6 @@ namespace HRPortal.Controllers
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             await _userManager.AddToRoleAsync(user, model.role);
-            await _userManager.AddToRoleAsync(user, "Employee");
             await _userManager.AddClaimAsync(user, new Claim("MyClaimType", "MyClaimValue"));
             if (result.Succeeded)
             {
@@ -64,7 +63,6 @@ namespace HRPortal.Controllers
             var user = await _userManager.FindByNameAsync(model.Username);
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
-                IdentityOptions _options = new IdentityOptions();
                 var claims = new List<Claim>{ new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new Claim(JwtRegisteredClaimNames.Email,user.Email),
