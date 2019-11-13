@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\skputta\\source\\repos\\HRPortal\\XUnitTestHRPortal\\XUnitTestHRPortal.csproj": {}
+    "c:\\Users\\skputta\\source\\repos\\HRPortal\\XUnitTestHRPortal\\XUnitTestHRPortal.csproj": {}
   },
   "projects": {
-    "C:\\Users\\skputta\\source\\repos\\HRPortal\\HRPortal\\HRPortal.csproj": {
+    "c:\\Users\\skputta\\source\\repos\\HRPortal\\HRPortal\\HRPortal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\skputta\\source\\repos\\HRPortal\\HRPortal\\HRPortal.csproj",
+        "projectUniqueName": "c:\\Users\\skputta\\source\\repos\\HRPortal\\HRPortal\\HRPortal.csproj",
         "projectName": "HRPortal",
-        "projectPath": "C:\\Users\\skputta\\source\\repos\\HRPortal\\HRPortal\\HRPortal.csproj",
+        "projectPath": "c:\\Users\\skputta\\source\\repos\\HRPortal\\HRPortal\\HRPortal.csproj",
         "packagesPath": "C:\\Users\\skputta\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\skputta\\source\\repos\\HRPortal\\HRPortal\\obj\\",
+        "outputPath": "c:\\Users\\skputta\\source\\repos\\HRPortal\\HRPortal\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\skputta\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -110,14 +110,14 @@
         }
       }
     },
-    "C:\\Users\\skputta\\source\\repos\\HRPortal\\XUnitTestHRPortal\\XUnitTestHRPortal.csproj": {
+    "c:\\Users\\skputta\\source\\repos\\HRPortal\\XUnitTestHRPortal\\XUnitTestHRPortal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\skputta\\source\\repos\\HRPortal\\XUnitTestHRPortal\\XUnitTestHRPortal.csproj",
+        "projectUniqueName": "c:\\Users\\skputta\\source\\repos\\HRPortal\\XUnitTestHRPortal\\XUnitTestHRPortal.csproj",
         "projectName": "XUnitTestHRPortal",
-        "projectPath": "C:\\Users\\skputta\\source\\repos\\HRPortal\\XUnitTestHRPortal\\XUnitTestHRPortal.csproj",
+        "projectPath": "c:\\Users\\skputta\\source\\repos\\HRPortal\\XUnitTestHRPortal\\XUnitTestHRPortal.csproj",
         "packagesPath": "C:\\Users\\skputta\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\skputta\\source\\repos\\HRPortal\\XUnitTestHRPortal\\obj\\",
+        "outputPath": "c:\\Users\\skputta\\source\\repos\\HRPortal\\XUnitTestHRPortal\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\skputta\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -133,8 +133,8 @@
         "frameworks": {
           "netcoreapp2.1": {
             "projectReferences": {
-              "C:\\Users\\skputta\\source\\repos\\HRPortal\\HRPortal\\HRPortal.csproj": {
-                "projectPath": "C:\\Users\\skputta\\source\\repos\\HRPortal\\HRPortal\\HRPortal.csproj"
+              "c:\\Users\\skputta\\source\\repos\\HRPortal\\HRPortal\\HRPortal.csproj": {
+                "projectPath": "c:\\Users\\skputta\\source\\repos\\HRPortal\\HRPortal\\HRPortal.csproj"
               }
             }
           }
