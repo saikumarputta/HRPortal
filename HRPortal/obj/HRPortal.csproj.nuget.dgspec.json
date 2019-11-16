@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\skputta\\source\\repos\\HRPortal\\HRPortal\\HRPortal.csproj": {}
+    "C:\\Users\\skputta\\source\\repos\\HRPortal\\HRPortal\\HRPortal.csproj": {}
   },
   "projects": {
-    "c:\\Users\\skputta\\source\\repos\\HRPortal\\HRPortal\\HRPortal.csproj": {
+    "C:\\Users\\skputta\\source\\repos\\HRPortal\\HRPortal\\HRPortal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\skputta\\source\\repos\\HRPortal\\HRPortal\\HRPortal.csproj",
+        "projectUniqueName": "C:\\Users\\skputta\\source\\repos\\HRPortal\\HRPortal\\HRPortal.csproj",
         "projectName": "HRPortal",
-        "projectPath": "c:\\Users\\skputta\\source\\repos\\HRPortal\\HRPortal\\HRPortal.csproj",
+        "projectPath": "C:\\Users\\skputta\\source\\repos\\HRPortal\\HRPortal\\HRPortal.csproj",
         "packagesPath": "C:\\Users\\skputta\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\skputta\\source\\repos\\HRPortal\\HRPortal\\obj\\",
+        "outputPath": "C:\\Users\\skputta\\source\\repos\\HRPortal\\HRPortal\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\skputta\\AppData\\Roaming\\NuGet\\NuGet.Config",
