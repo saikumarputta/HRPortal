@@ -96,19 +96,7 @@ namespace XUnitTestHRPortal
                 //Arrange
                 var request = new
                 {
-                    Url = "api/employee/2",
-                    Body = new
-                    {
-                        EmployeeId = 2,
-                        FirstName = "ram",
-                        LastName = "king",
-                        Email = "ramking@gmail.com",
-                        PhoneNumber = "7036355827",
-                        Address = "Khammam",
-                        OfficePhoneNumber = "8500856743",
-                        Photo = "",
-                        WebUrl = ""
-                    }
+                    Url = "api/employee/2"
                 };
                 var deleteResponse = await server.CreateClient().DeleteAsync(request.Url);
 
